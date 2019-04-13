@@ -1,0 +1,7 @@
+/api/__pycache__/
+/api/migrations/__pycache__/
+
+/coral/__pycache__/
+*.pyc
+__pycache__
+db.sqlite3

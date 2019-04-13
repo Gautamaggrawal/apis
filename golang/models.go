@@ -1,10 +1,11 @@
 package main
 
 import (
-	
+	"fmt"
 	"log"
 	"encoding/json" 	 
 	"net/http" 
+	"io"
 ) 
 
 type Users struct {  
@@ -49,5 +50,53 @@ func returnAllUsers (w http.ResponseWriter, r * http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(response) 
+
+}
+
+func userAddHandler(w http.ResponseWriter, r *http.Request) {
+
+
+       //make byte array
+       out := make([]byte,1024)
+
+       //
+       bodyLen, err := r.Body.Read(out)
+
+       if err != io.EOF {
+              fmt.Println(err.Error(),"kya hua")
+              w.Write([]byte("{error:" + err.Error() + "}"))
+              return
+       }
+
+       var k Users
+
+       err = json.Unmarshal(out[:bodyLen],&k)
+       log.Print(&k)
+
+
+       if err != nil {
+              w.Write([]byte("{error:" + err.Error() + "}"))
+              return
+       }
+
+       err = insertInDatabase(k)
+
+       if err != nil {
+              w.Write([]byte("{error:" + err.Error() + "}"))
+              return
+       }
+
+       w.Write([]byte(`{"msg":"success"}`))
+
+}
+
+func insertInDatabase(data Users) error {
+	var db=connect()
+      //execute statement
+      fmt.Println(data)
+      log.Print(data)
+
+       _, err := db.Exec("INSERT INTO `UserData` (` emailid`, `userName`, ` phoneNo`, ` password`) VALUES (?,?, ?,?)",data.emailid , data.username, data.phoneno,data.password)
+       return err
 
 }

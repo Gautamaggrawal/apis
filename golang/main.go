@@ -11,11 +11,10 @@ import (
 func main () { 
 
 	router:= mux.NewRouter()
-	router.HandleFunc("/add", userAddHandler).Methods("POST") 	
-	router.HandleFunc("/getproducts", returnAllUsers).Methods("GET") 
+	router.HandleFunc("/adduser", userAddHandler).Methods("POST") 	
+	router.HandleFunc("/getusers", returnAllUsers).Methods("GET") 
 	http.Handle("/", router) 
-	fmt.Println("Connected to port 1234") 
-	// log.Fatal(http.ListenAndServe (" : 1234 ", router)) 
+	fmt.Println("Connected to port 1234")  
 	log.Fatal(http.ListenAndServe(":12346", router))
 
 }

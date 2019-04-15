@@ -16,6 +16,7 @@ func main() {
 	api.HandleFunc("/adduser", userAddHandler).Methods("POST")
 	api.HandleFunc("/getusers", returnAllUsers).Methods("GET")
 	api.HandleFunc("/search", emailsearchHandler).Methods("POST")
+	api.HandleFunc("/delete", emaildeleteHandler).Methods("POST")
 
 	r.PathPrefix("/").HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "./static/index.html")

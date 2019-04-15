@@ -12,10 +12,10 @@ import (
 )
 
 type Users struct {
-	Username string `json:"username"`
 	Emailid  string `json:"emailid,omitempty"`
-	Password string `json:"password"`
+	Username string `json:"username"`
 	Phoneno  string `json:"phoneno"`
+	Password string `json:"password"`
 }
 
 type Response struct {
@@ -42,13 +42,13 @@ func returnAllUsers(w http.ResponseWriter, r *http.Request) {
 	}
 
 	for rows.Next() {
-		if err := rows.Scan(&users.Username, &users.Emailid, &users.Password, &users.Phoneno); err != nil {
+		if err := rows.Scan(&users.Emailid, &users.Username, &users.Phoneno, &users.Password); err != nil {
 			log.Fatal(err.Error())
 
 		} else {
 
 			arr_user = append(arr_user, users)
-			log.Print(users)
+
 		}
 
 	}
@@ -171,4 +171,35 @@ func emailsearchHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode("Found")
 	return
+}
+
+func emaildeleteHandler(w http.ResponseWriter, r *http.Request) {
+	var db = connect()
+	// var name string
+	var em = r.FormValue("emailid")
+	log.Print(em)
+	var err error
+
+	res, err := db.Exec("DELETE FROM `userData` WHERE `emailId`= ?", em)
+	log.Print(res, err)
+
+	if err == nil {
+
+		count, err := res.RowsAffected()
+		if err == nil {
+			log.Print(count)
+			if count == 1 {
+				json.NewEncoder(w).Encode("Deleted")
+				return
+
+			}
+			json.NewEncoder(w).Encode("Not found")
+			return
+			/* check count and return true/false */
+		}
+
+	}
+	log.Print("asf")
+	return
+
 }

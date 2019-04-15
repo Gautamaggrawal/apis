@@ -25,8 +25,11 @@ go get github.com/go-sql-driver/mysql
 
 ## Running
 
-```go build```
-``` ./restapi```
+```
+go build
+./restapi
+
+```
 
 ## License
 

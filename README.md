@@ -1,6 +1,6 @@
 # RESTFUL API 
 
-- Create , List , Update APIs for User in Golang and Django
+- Create , List , Update,Delete APIs for User in Golang and Django
 
 
 ## Getting Started

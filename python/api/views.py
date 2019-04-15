@@ -13,6 +13,16 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
+    """
+    retrieve:
+    Return the given user.
+
+    list:
+    Return a list of all the existing users.
+
+    create:
+    Create a new user instance.
+    """
     queryset = Userdata.objects.all()
     serializer_class = UserSerializer
     filter_backends = (filters.SearchFilter,)

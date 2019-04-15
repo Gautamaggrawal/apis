@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'api',
+    'coreapi',
     'rest_framework',
     'corsheaders',
 ]
@@ -150,3 +151,8 @@ STATIC_URL = '/static/'
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
 }
+
+# from rest_framework.renderers import DocumentationRenderer
+
+# class CustomRenderer(DocumentationRenderer):
+#     languages = ['ruby', 'go']

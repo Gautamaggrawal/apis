@@ -4,6 +4,6 @@ from django.contrib import admin
 from api.models import Userdata
 
 class UserdataAdmin(admin.ModelAdmin):
-    list_display = ("username","phoneno","emailid" ,"datetime")
+    list_display = ("pk","username","phoneno","emailid" ,"datetime")
 
 admin.site.register(Userdata,UserdataAdmin)

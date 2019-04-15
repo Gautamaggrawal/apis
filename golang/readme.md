@@ -1,4 +1,4 @@
-# UserAPI in GOLANG
+# REST API in GOLANG
 
 Create , List , Update APIs for User in go(Golang)
 

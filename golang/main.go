@@ -2,20 +2,25 @@ package main
 
 import (
 	"fmt"
-    "log"
-    "net/http"
-    "github.com/gorilla/mux"
-    _ "github.com/go-sql-driver/mysql"
-) 
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/gorilla/mux"
+	"log"
+	"net/http"
+)
 
-func main () { 
+func main() {
+	r := mux.NewRouter()
 
-	router:= mux.NewRouter()
-	router.HandleFunc("/adduser", userAddHandler).Methods("POST") 	
-	router.HandleFunc("/getusers", returnAllUsers).Methods("GET") 
-	http.Handle("/", router) 
-	fmt.Println("Connected to port 1234")  
-	log.Fatal(http.ListenAndServe(":12346", router))
+	// Handle API routes
+	api := r.PathPrefix("/api/").Subrouter()
+	api.HandleFunc("/adduser", userAddHandler).Methods("POST")
+	api.HandleFunc("/getusers", returnAllUsers).Methods("GET")
+	api.HandleFunc("/search", emailsearchHandler).Methods("POST")
 
+	r.PathPrefix("/").HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./static/index.html")
+	})
+
+	fmt.Println("http://localhost:8888")
+	log.Fatal(http.ListenAndServe(":8888", r))
 }
-

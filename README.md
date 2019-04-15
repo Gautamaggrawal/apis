@@ -16,4 +16,9 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) f
 
 ![Image](https://github.com/Gautamaggrawal/apis/blob/master/python/Webp.net-gifmaker.gif)
 
+## Documentation
 
+![Image](https://github.com/Gautamaggrawal/apis/blob/master/djangodocs.gif)
+
+-Complete working of api with seperate url
+-http://127.0.0.1:8000/docs/ 

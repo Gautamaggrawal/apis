@@ -15,7 +15,7 @@
 
 ![Image](https://github.com/Gautamaggrawal/apis/blob/master/djangodocs.gif)
 
-- Complete working of api with seperate url
+- Complete Documentation of APIs
 - http://127.0.0.1:8000/docs/ 
 
 ## License

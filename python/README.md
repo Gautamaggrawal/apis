@@ -7,8 +7,18 @@ Create , List , Update APIs for User in Python(Django)
 Use the package manager [GO](https://pip.pypa.io/en/stable/).
 
 ```bash
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
+
+## Execution 
+
+Use Python3 and pip3
+
+```bash
+python3 manage.py runserver
+```
+
+
 ![Image](https://github.com/Gautamaggrawal/apis/blob/master/python/Webp.net-gifmaker.gif)
 
 - In the above GIF shows the working of complete project.
